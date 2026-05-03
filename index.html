@@ -7,30 +7,51 @@
 <body>
 <style>
 html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden;}
-body{padding-right:200px;box-sizing:border-box;}
 img{max-width:100%!important;height:auto!important;display:block;margin:0 auto;}
 table{table-layout:fixed!important;max-width:100%!important;width:100%!important;}
 td{max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
-@media (max-width:900px){
-.dbcs_banner{width:100%!important;height:auto!important;min-height:80px!important;padding:10px!important;}
-.dbcs_banner_text{font-size:14px!important;line-height:1.4!important;}
-.dbcs_banner_sub{font-size:12px!important;}
-}
+#sticky_header{position:sticky;top:0;z-index:9999;background:#dceffa;border-bottom:1px solid #88a;box-shadow:0 2px 4px rgba(0,0,0,0.15);padding:8px 12px;box-sizing:border-box;font-family:'맑은 고딕',sans-serif;}
+#sticky_header table{margin:0;border-collapse:separate;}
+.sticky_text_cell{vertical-align:middle;text-align:center;padding-right:12px;}
+.sticky_text_cell .main{font-size:15px;font-weight:bold;color:#333;line-height:1.3;}
+.sticky_text_cell .sub{font-size:12px;color:#0066cc;margin-top:4px;}
+.sticky_search_cell{width:240px;vertical-align:middle;}
+.sticky_search_box{background:#fff;border:1px solid #aac;border-radius:4px;padding:6px 8px;}
+.sticky_search_box .title{text-align:center;font-weight:bold;margin-bottom:4px;font-size:12px;color:#222;}
+.sticky_search_box input{width:100%;box-sizing:border-box;padding:4px;border:1px solid #aac;font-size:13px;}
+.sticky_search_box button{width:100%;padding:5px;margin-top:4px;cursor:pointer;background:#4a90e2;color:#fff;font-weight:bold;font-size:12px;border:1px solid #2e6cb0;border-radius:3px;}
+#dbcs_msg{text-align:center;margin-top:6px;font-family:'맑은 고딕',sans-serif;}
+#dbcs_noresult{color:#d00;font-size:12px;font-weight:bold;display:none;}
+#dbcs_count{color:#0066cc;font-size:12px;font-weight:bold;display:none;}
+#dbcs_nav{display:none;margin-top:4px;}
+#dbcs_nav button{padding:2px 8px;font-size:11px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;}
 @media (max-width:600px){
-body{padding-right:180px;}
-.dbcs_banner_text{font-size:12px!important;}
-.dbcs_banner_sub{font-size:11px!important;}
+#sticky_header table,#sticky_header tr,#sticky_header td{display:block;width:100%!important;}
+.sticky_text_cell{padding-right:0;margin-bottom:6px;}
+.sticky_text_cell .main{font-size:12px;}
+.sticky_text_cell .sub{font-size:11px;}
+.sticky_search_cell{width:100%!important;}
 }
 </style>
-<div id="dbcs_box" style="position:fixed;right:20px;top:0px;width:170px;height:110px;box-sizing:border-box;background:#dceffa;border:1px solid #88a;padding:10px;z-index:9999;font-family:'맑은 고딕',sans-serif;font-size:12px;color:#222;">
-<div style="text-align:center;font-weight:bold;margin-bottom:8px;">차종 &amp; 디자인검색</div>
-<input id="dbcs_kw" type="text" onkeydown="if((event.keyCode||event.which)===13){dbcs_search();return false;}" style="width:100%;box-sizing:border-box;padding:4px;border:1px solid #aac;" />
-<button type="button" onclick="dbcs_search()" style="width:100%;padding:7px 5px;margin-top:6px;cursor:pointer;background:#4a90e2;color:#fff;font-weight:bold;font-size:13px;border:1px solid #2e6cb0;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25),0 1px 2px rgba(0,0,0,0.15);">검색</button>
+<div id="sticky_header">
+<table cellspacing='0' cellpadding='0'><tr>
+<td class="sticky_text_cell">
+<div class="main">원하시는 차종명 또는 디자인명을 검색창에 입력하시면 해당 디자인을 빠르게 찾을 수 있습니다</div>
+<div class="sub">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대</div>
+</td>
+<td class="sticky_search_cell">
+<div class="sticky_search_box">
+<div class="title">차종 &amp; 디자인검색</div>
+<input id="dbcs_kw" type="text" onkeydown="if((event.keyCode||event.which)===13){dbcs_search();return false;}" />
+<button type="button" onclick="dbcs_search()">검색</button>
 </div>
-<div id="dbcs_msg" style="position:fixed;right:20px;top:115px;width:170px;font-family:'맑은 고딕',sans-serif;z-index:9999;">
-<div id="dbcs_noresult" style="color:#d00;font-size:13px;font-weight:bold;text-align:center;display:none;">검색 결과가 없습니다.<br />검색어를 변경하여<br />다시 시도해주세요</div>
-<div id="dbcs_count" style="color:#0066cc;font-size:13px;font-weight:bold;text-align:center;margin-bottom:5px;display:none;"></div>
-<div id="dbcs_nav" style="text-align:center;display:none;"><button type="button" onclick="dbcs_prev()" style="padding:4px 6px;font-size:12px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;">← 이전</button> <span id="dbcs_pos" style="font-size:12px;display:inline-block;padding:0 4px;"></span> <button type="button" onclick="dbcs_next()" style="padding:4px 6px;font-size:12px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;">다음 →</button></div>
+</td>
+</tr></table>
+<div id="dbcs_msg">
+<div id="dbcs_noresult">검색 결과가 없습니다. 검색어를 변경하여 다시 시도해주세요</div>
+<div id="dbcs_count"></div>
+<div id="dbcs_nav"><button type="button" onclick="dbcs_prev()">← 이전</button> <span id="dbcs_pos" style="font-size:11px;display:inline-block;padding:0 6px;"></span> <button type="button" onclick="dbcs_next()">다음 →</button></div>
+</div>
 </div>
 <script>
 var dbcs_matches=[];var dbcs_idx=0;
@@ -42,7 +63,6 @@ function dbcs_prev(){if(dbcs_matches.length===0)return;dbcs_idx=(dbcs_idx-1+dbcs
 function dbcs_next(){if(dbcs_matches.length===0)return;dbcs_idx=(dbcs_idx+1)%dbcs_matches.length;dbcs_findTarget(dbcs_matches[dbcs_idx]).scrollIntoView(true);dbcs_updatePos();}
 </script>
 <table width='100%' border='0' cellpadding='0' cellspacing='0'>
-<tr><td align='center'><div class="dbcs_banner" style="width:100%;height:110px;background:#dceffa;border:1px solid #88a;box-sizing:border-box;display:table;font-family:'맑은 고딕',sans-serif;"><div style="display:table-cell;vertical-align:middle;text-align:center;padding:0 10px;"><div class="dbcs_banner_text" style="font-size:16px;font-weight:bold;color:#333;">원하시는 차종명 또는 디자인명을 우측의 검색창에 입력하시면 해당 디자인을 빠르게 찾을 수 있습니다</div><div class="dbcs_banner_sub" style="font-size:14px;color:#0066cc;margin-top:6px;">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대</div></div></div></td></tr>
 <tr> <td align='center' valign='top'> <img src='https://kwd591-hash.github.io/luxmetal-catalog/image/B1E1.jpg' /> </td> </tr>
 <tr> <td align='center' valign='top'> <img src='https://kwd591-hash.github.io/luxmetal-catalog/image/H1E1.jpg' /> </td> </tr>
 <tr><td><span style="display:none;">벤츠</span></td></tr>
