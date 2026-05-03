@@ -1,4 +1,22 @@
-﻿<div id="dbcs_box" style="position:fixed;right:20px;top:0px;width:170px;height:110px;box-sizing:border-box;background:#dceffa;border:1px solid #88a;padding:10px;z-index:9999;font-family:'맑은 고딕',sans-serif;font-size:12px;color:#222;">
+﻿<style>
+img{max-width:100%;height:auto;}
+table{max-width:100%;}
+@media (max-width:900px){
+#dbcs_box{position:static!important;right:auto!important;left:auto!important;top:auto!important;width:auto!important;height:auto!important;margin:0 0 10px 0!important;padding:8px!important;}
+#dbcs_box>div{margin-bottom:6px!important;}
+#dbcs_box input{display:inline-block!important;width:calc(100% - 78px)!important;vertical-align:top!important;margin:0!important;}
+#dbcs_box button{display:inline-block!important;width:70px!important;margin:0 0 0 4px!important;padding:5px!important;vertical-align:top!important;}
+#dbcs_msg{position:static!important;right:auto!important;left:auto!important;top:auto!important;width:auto!important;margin:0 0 10px 0!important;}
+.dbcs_banner{height:auto!important;min-height:80px!important;padding:10px!important;}
+.dbcs_banner_text{font-size:14px!important;line-height:1.4!important;}
+.dbcs_banner_sub{font-size:12px!important;}
+}
+@media (max-width:600px){
+.dbcs_banner_text{font-size:12px!important;}
+.dbcs_banner_sub{font-size:11px!important;}
+}
+</style>
+<div id="dbcs_box" style="position:fixed;right:20px;top:0px;width:170px;height:110px;box-sizing:border-box;background:#dceffa;border:1px solid #88a;padding:10px;z-index:9999;font-family:'맑은 고딕',sans-serif;font-size:12px;color:#222;">
 <div style="text-align:center;font-weight:bold;margin-bottom:8px;">차종 &amp; 디자인검색</div>
 <input id="dbcs_kw" type="text" onkeydown="if((event.keyCode||event.which)===13){dbcs_search();return false;}" style="width:100%;box-sizing:border-box;padding:4px;border:1px solid #aac;" />
 <button type="button" onclick="dbcs_search()" style="width:100%;padding:7px 5px;margin-top:6px;cursor:pointer;background:#4a90e2;color:#fff;font-weight:bold;font-size:13px;border:1px solid #2e6cb0;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25),0 1px 2px rgba(0,0,0,0.15);">검색</button>
@@ -18,7 +36,7 @@ function dbcs_prev(){if(dbcs_matches.length===0)return;dbcs_idx=(dbcs_idx-1+dbcs
 function dbcs_next(){if(dbcs_matches.length===0)return;dbcs_idx=(dbcs_idx+1)%dbcs_matches.length;dbcs_findTarget(dbcs_matches[dbcs_idx]).scrollIntoView(true);dbcs_updatePos();}
 </script>
 <table width='100%' border='0' cellpadding='0' cellspacing='0'>
-<tr><td align='center'><div style="width:100%;height:110px;background:#dceffa;border:1px solid #88a;box-sizing:border-box;display:table;font-family:'맑은 고딕',sans-serif;"><div style="display:table-cell;vertical-align:middle;text-align:center;padding:0 10px;"><div style="font-size:16px;font-weight:bold;color:#333;">원하시는 차종명 또는 디자인명을 우측의 검색창에 입력하시면 해당 디자인을 빠르게 찾을 수 있습니다</div><div style="font-size:14px;color:#0066cc;margin-top:6px;">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대</div></div></div></td></tr>
+<tr><td align='center'><div class="dbcs_banner" style="width:100%;height:110px;background:#dceffa;border:1px solid #88a;box-sizing:border-box;display:table;font-family:'맑은 고딕',sans-serif;"><div style="display:table-cell;vertical-align:middle;text-align:center;padding:0 10px;"><div class="dbcs_banner_text" style="font-size:16px;font-weight:bold;color:#333;">원하시는 차종명 또는 디자인명을 우측의 검색창에 입력하시면 해당 디자인을 빠르게 찾을 수 있습니다</div><div class="dbcs_banner_sub" style="font-size:14px;color:#0066cc;margin-top:6px;">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대</div></div></div></td></tr>
 <tr> <td align='center' valign='top'> <img src='https://kwd591-hash.github.io/luxmetal-catalog/image/B1E1.jpg' /> </td> </tr>
 <tr> <td align='center' valign='top'> <img src='https://kwd591-hash.github.io/luxmetal-catalog/image/H1E1.jpg' /> </td> </tr>
 <tr><td><span style="display:none;">벤츠</span></td></tr>
