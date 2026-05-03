@@ -7,46 +7,37 @@
 <body>
 <style>
 html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden;}
-img{max-width:100%!important;height:auto!important;display:block;margin:0 auto;}
+body{padding-top:88px;}
+img{max-width:100%!important;height:auto!important;display:block;margin:0 auto;scroll-margin-top:95px;}
+span{scroll-margin-top:95px;}
 table{table-layout:fixed!important;max-width:100%!important;width:100%!important;}
 td{max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
-#sticky_header{position:sticky;top:0;z-index:9999;background:#dceffa;border-bottom:1px solid #88a;box-shadow:0 2px 4px rgba(0,0,0,0.15);padding:8px 12px;box-sizing:border-box;font-family:'맑은 고딕',sans-serif;}
-#sticky_header table{margin:0;border-collapse:separate;}
-.sticky_text_cell{vertical-align:middle;text-align:center;padding-right:12px;}
-.sticky_text_cell .main{font-size:15px;font-weight:bold;color:#333;line-height:1.3;}
-.sticky_text_cell .sub{font-size:12px;color:#0066cc;margin-top:4px;}
-.sticky_search_cell{width:240px;vertical-align:middle;}
-.sticky_search_box{background:#fff;border:1px solid #aac;border-radius:4px;padding:6px 8px;}
-.sticky_search_box .title{text-align:center;font-weight:bold;margin-bottom:4px;font-size:12px;color:#222;}
-.sticky_search_box input{width:100%;box-sizing:border-box;padding:4px;border:1px solid #aac;font-size:13px;}
-.sticky_search_box button{width:100%;padding:5px;margin-top:4px;cursor:pointer;background:#4a90e2;color:#fff;font-weight:bold;font-size:12px;border:1px solid #2e6cb0;border-radius:3px;}
-#dbcs_msg{text-align:center;margin-top:6px;font-family:'맑은 고딕',sans-serif;}
+#sticky_header{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:9999;background:#dceffa;border:1px solid #88a;box-shadow:0 2px 6px rgba(0,0,0,0.15);padding:8px 12px;box-sizing:border-box;font-family:'맑은 고딕',sans-serif;width:100%;max-width:823px;text-align:center;}
+#sticky_header .search_icon{vertical-align:middle;margin-right:4px;}
+#sticky_header #dbcs_kw{vertical-align:middle;width:200px;box-sizing:border-box;padding:4px;border:1px solid #000;font-size:17px;margin-right:6px;}
+#sticky_header #dbcs_kw::placeholder{color:#999;font-size:15px;}
+#sticky_header #dbcs_kw::-webkit-input-placeholder{color:#999;font-size:15px;}
+#sticky_header #dbcs_kw::-moz-placeholder{color:#999;font-size:15px;opacity:1;}
+#sticky_header #dbcs_kw:-ms-input-placeholder{color:#999;font-size:15px;}
+#sticky_header .search_btn{vertical-align:middle;width:60px;padding:6px 8px;cursor:pointer;background:#4a90e2;color:#fff;font-weight:bold;font-size:12px;border:1px solid #2e6cb0;border-radius:3px;}
+.examples_below{font-size:12px;color:#0066cc;margin-top:6px;text-align:center;font-family:'맑은 고딕',sans-serif;}
+#dbcs_msg{text-align:center;margin-top:6px;font-family:'맑은 고딕',sans-serif;white-space:nowrap;}
 #dbcs_noresult{color:#d00;font-size:12px;font-weight:bold;display:none;}
-#dbcs_count{color:#0066cc;font-size:12px;font-weight:bold;display:none;}
-#dbcs_nav{display:none;margin-top:4px;}
-#dbcs_nav button{padding:2px 8px;font-size:11px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;}
+#dbcs_count{color:#0066cc;font-size:12px;font-weight:bold;display:none;margin-right:8px;vertical-align:middle;}
+#dbcs_nav{display:none;vertical-align:middle;}
+#dbcs_nav button{padding:2px 8px;font-size:11px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;vertical-align:middle;}
 @media (max-width:600px){
-#sticky_header table,#sticky_header tr,#sticky_header td{display:block;width:100%!important;}
-.sticky_text_cell{padding-right:0;margin-bottom:6px;}
-.sticky_text_cell .main{font-size:12px;}
-.sticky_text_cell .sub{font-size:11px;}
-.sticky_search_cell{width:100%!important;}
+body{padding-top:88px;}
+img,span{scroll-margin-top:95px;}
+.sticky_search_box{width:90%;max-width:280px;}
+.examples_below{font-size:11px;}
 }
 </style>
 <div id="sticky_header">
-<table cellspacing='0' cellpadding='0'><tr>
-<td class="sticky_text_cell">
-<div class="main">원하시는 차종명 또는 디자인명을 검색창에 입력하시면 해당 디자인을 빠르게 찾을 수 있습니다</div>
-<div class="sub">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대</div>
-</td>
-<td class="sticky_search_cell">
-<div class="sticky_search_box">
-<div class="title">차종 &amp; 디자인검색</div>
-<input id="dbcs_kw" type="text" onkeydown="if((event.keyCode||event.which)===13){dbcs_search();return false;}" />
-<button type="button" onclick="dbcs_search()">검색</button>
-</div>
-</td>
-</tr></table>
+<svg class='search_icon' xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='#555' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'></circle><line x1='21' y1='21' x2='16.65' y2='16.65'></line></svg>
+<input id="dbcs_kw" type="text" placeholder="차종명 또는 디자인명 입력" onkeydown="if((event.keyCode||event.which)===13){dbcs_search();return false;}" />
+<button type="button" class="search_btn" onclick="dbcs_search()">검색</button>
+<div class="examples_below">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대</div>
 <div id="dbcs_msg">
 <div id="dbcs_noresult">검색 결과가 없습니다. 검색어를 변경하여 다시 시도해주세요</div>
 <div id="dbcs_count"></div>
@@ -56,9 +47,9 @@ td{max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
 <script>
 var dbcs_matches=[];var dbcs_idx=0;
 function dbcs_findTarget(s){var t=s.nextSibling;while(t&&(t.nodeType!==1||(t.tagName&&t.tagName.toLowerCase()==='span')))t=t.nextSibling;if(!t){var p=s.parentNode;while(p){var n=p.nextSibling;while(n&&(n.nodeType!==1||(n.tagName&&n.tagName.toLowerCase()==='span')))n=n.nextSibling;if(n){t=n;break;}p=p.parentNode;}}return t||s;}
-function dbcs_show(state){var nr=document.getElementById('dbcs_noresult');var c=document.getElementById('dbcs_count');var nv=document.getElementById('dbcs_nav');if(nr)nr.style.display=(state==='noresult')?'block':'none';if(c)c.style.display=(state==='has')?'block':'none';if(nv)nv.style.display=(state==='has')?'block':'none';}
+function dbcs_show(state){var nr=document.getElementById('dbcs_noresult');var c=document.getElementById('dbcs_count');var nv=document.getElementById('dbcs_nav');var ex=document.querySelector('.examples_below');if(nr)nr.style.display=(state==='noresult')?'inline-block':'none';if(c)c.style.display=(state==='has')?'inline-block':'none';if(nv)nv.style.display=(state==='has')?'inline-block':'none';if(ex)ex.style.display=(state==='noresult'||state==='has')?'none':'block';}
 function dbcs_updatePos(){var pos=document.getElementById('dbcs_pos');var c=document.getElementById('dbcs_count');if(pos)pos.innerHTML='<span style="color:#d00;font-weight:bold;">'+(dbcs_idx+1)+'</span> / '+dbcs_matches.length;if(c)c.innerHTML='총 '+dbcs_matches.length+'건이 검색되었습니다';}
-function dbcs_search(){var inp=document.getElementById('dbcs_kw');var kw=(inp.value||'').replace(/^\s+|\s+$/g,'');inp.value='';if(!kw){dbcs_show('hidden');return;}var lower=kw.toLowerCase().replace(/\s+/g,'');dbcs_matches=[];var spans=document.getElementsByTagName('span');for(var i=0;i<spans.length;i++){var s=spans[i];var text=s.innerHTML||'';if(!text){var oh=s.outerHTML||'';text=oh.replace(/<[^>]+>/g,'');}if(text.toLowerCase().replace(/\s+/g,'').indexOf(lower)>=0)dbcs_matches.push(s);}if(dbcs_matches.length===0){dbcs_show('noresult');return;}dbcs_idx=0;dbcs_findTarget(dbcs_matches[0]).scrollIntoView(true);dbcs_updatePos();dbcs_show('has');}
+function dbcs_search(){var inp=document.getElementById('dbcs_kw');var kw=(inp.value||'').replace(/^\s+|\s+$/g,'');if(!kw){dbcs_show('hidden');return;}var lower=kw.toLowerCase().replace(/\s+/g,'');dbcs_matches=[];var hdr=document.getElementById('sticky_header');var spans=document.getElementsByTagName('span');for(var i=0;i<spans.length;i++){var s=spans[i];if(hdr&&hdr.contains(s))continue;var text=s.innerHTML||'';if(!text){var oh=s.outerHTML||'';text=oh.replace(/<[^>]+>/g,'');}if(text.toLowerCase().replace(/\s+/g,'').indexOf(lower)>=0)dbcs_matches.push(s);}if(dbcs_matches.length===0){dbcs_show('noresult');return;}dbcs_idx=0;dbcs_findTarget(dbcs_matches[0]).scrollIntoView(true);dbcs_updatePos();dbcs_show('has');}
 function dbcs_prev(){if(dbcs_matches.length===0)return;dbcs_idx=(dbcs_idx-1+dbcs_matches.length)%dbcs_matches.length;dbcs_findTarget(dbcs_matches[dbcs_idx]).scrollIntoView(true);dbcs_updatePos();}
 function dbcs_next(){if(dbcs_matches.length===0)return;dbcs_idx=(dbcs_idx+1)%dbcs_matches.length;dbcs_findTarget(dbcs_matches[dbcs_idx]).scrollIntoView(true);dbcs_updatePos();}
 </script>
