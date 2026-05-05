@@ -26,7 +26,7 @@ td{max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
 #sticky_header #search_row{display:flex;align-items:center;justify-content:center;padding:0 5px;box-sizing:border-box;}
 #sticky_header #search_row > *{margin-right:6px;}
 #sticky_header #search_row > *:last-child{margin-right:0;}
-.examples_below{font-size:13px;color:#0066cc;margin-top:7px;text-align:left;padding-left:41px;font-family:'맑은 고딕',sans-serif;}
+.examples_below{font-size:14px;color:#0066cc;margin-top:8px;text-align:left;padding-left:41px;font-family:'맑은 고딕',sans-serif;visibility:hidden;}
 #dbcs_msg{text-align:left;padding-left:41px;margin-top:7px;font-family:'맑은 고딕',sans-serif;white-space:nowrap;}
 #dbcs_noresult{color:#d00;font-size:13px;font-weight:bold;display:none;vertical-align:middle;}
 #dbcs_count{color:#0066cc;font-size:13px;font-weight:bold;display:none;margin-right:8px;vertical-align:middle;}
@@ -68,8 +68,8 @@ document.addEventListener('contextmenu',function(e){if(e.target&&e.target.tagNam
 document.addEventListener('keydown',function(e){var k=e.keyCode||e.which;if(k===123){e.preventDefault();return false;}if(e.ctrlKey&&(k===85)){e.preventDefault();return false;}if(e.ctrlKey&&e.shiftKey&&(k===73||k===74||k===67||k===75)){e.preventDefault();return false;}if((e.metaKey||e.ctrlKey)&&e.altKey&&(k===73||k===74||k===67)){e.preventDefault();return false;}});
 document.addEventListener('selectstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='input')return;e.preventDefault();return false;});
 document.addEventListener('dragstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='img'){e.preventDefault();return false;}});
-function dbcs_alignBelow(){var inp=document.getElementById('dbcs_kw');var blk=document.getElementById('search_block');if(!inp||!blk)return;var off=inp.getBoundingClientRect().left-blk.getBoundingClientRect().left;var ex=document.querySelector('.examples_below');var msg=document.getElementById('dbcs_msg');if(ex)ex.style.paddingLeft=off+'px';if(msg)msg.style.paddingLeft=off+'px';}
-if(document.readyState!=='loading')dbcs_alignBelow();else document.addEventListener('DOMContentLoaded',dbcs_alignBelow);window.addEventListener('load',dbcs_alignBelow);window.addEventListener('resize',dbcs_alignBelow);
+function dbcs_alignBelow(){var inp=document.getElementById('dbcs_kw');var blk=document.getElementById('search_block');if(!inp||!blk)return;var off=inp.getBoundingClientRect().left-blk.getBoundingClientRect().left;var ex=document.querySelector('.examples_below');var msg=document.getElementById('dbcs_msg');if(ex){ex.style.paddingLeft=off+'px';ex.style.visibility='visible';}if(msg)msg.style.paddingLeft=off+'px';}
+dbcs_alignBelow();window.addEventListener('load',dbcs_alignBelow);window.addEventListener('resize',dbcs_alignBelow);
 </script>
 <table width='100%' border='0' cellpadding='0' cellspacing='0'>
 <tr> <td align='center' valign='top'> <img src='https://luxmetal-catalog.pages.dev/image/B1E1.jpg' /> </td> </tr>
