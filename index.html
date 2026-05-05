@@ -13,23 +13,26 @@ span{scroll-margin-top:101px;}
 table{table-layout:fixed!important;max-width:100%!important;width:100%!important;}
 td{max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
 #sticky_header{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:9999;background:#dceffa;border:1px solid #88a;box-shadow:0 2px 6px rgba(0,0,0,0.15);padding:8px 12px;box-sizing:border-box;font-family:'맑은 고딕',sans-serif;width:100%;max-width:823px;text-align:center;font-size:0;}
-#sticky_header .search_icon{vertical-align:middle;margin-right:6px;}
-#sticky_header #dbcs_kw{vertical-align:middle;width:160px;height:42px;box-sizing:border-box;padding:4px 8px;border:2px solid #000;font-size:25px;margin-right:6px;}
+#sticky_header .search_icon{flex-shrink:0;}
+#sticky_header #dbcs_kw{flex:0 1 250px;min-width:50px;max-width:250px;height:42px;box-sizing:border-box;padding:4px 8px;border:2px solid #000;font-size:25px;}
 #sticky_header #dbcs_kw::placeholder{color:#999;font-size:23px;}
 #sticky_header #dbcs_kw::-webkit-input-placeholder{color:#999;font-size:23px;}
 #sticky_header #dbcs_kw::-moz-placeholder{color:#999;font-size:23px;opacity:1;}
 #sticky_header #dbcs_kw:-ms-input-placeholder{color:#999;font-size:23px;}
-#sticky_header .search_btn{vertical-align:middle;width:60px;height:42px;box-sizing:border-box;padding:0 8px;cursor:pointer;background:#4a90e2;color:#fff;font-weight:bold;font-size:13px;border:1px solid #2e6cb0;border-radius:3px;}
-#sticky_header .purchase_btn{vertical-align:middle;height:42px;box-sizing:border-box;padding:0 12px;margin-left:6px;cursor:pointer;background:#28a745;color:#fff;font-weight:bold;font-size:13px;border:1px solid #1e7e34;border-radius:3px;text-decoration:none;display:inline-block;line-height:38px;}
+#sticky_header .search_btn{flex-shrink:0;width:60px;height:42px;box-sizing:border-box;padding:0 8px;cursor:pointer;background:#4a90e2;color:#fff;font-weight:bold;font-size:13px;border:1px solid #2e6cb0;border-radius:3px;}
+#sticky_header .purchase_btn{flex-shrink:0;height:42px;box-sizing:border-box;padding:0 12px;cursor:pointer;background:#28a745;color:#fff;font-weight:bold;font-size:13px;border:1px solid #1e7e34;border-radius:3px;text-decoration:none;line-height:38px;}
 #sticky_header .purchase_btn:hover{background:#218838;}
-#sticky_header #search_block{display:inline-block;}
-#sticky_header #search_row{white-space:nowrap;text-align:center;}
-.examples_below{font-size:13px;color:#0066cc;margin-top:7px;text-align:left;padding-left:36px;font-family:'맑은 고딕',sans-serif;}
-#dbcs_msg{text-align:center;margin-top:6px;font-family:'맑은 고딕',sans-serif;white-space:nowrap;}
-#dbcs_noresult{color:#d00;font-size:12px;font-weight:bold;display:none;}
-#dbcs_count{color:#0066cc;font-size:12px;font-weight:bold;display:none;margin-right:8px;vertical-align:middle;}
+#sticky_header #search_block{display:block;width:100%;}
+#sticky_header #search_row{display:flex;align-items:center;justify-content:center;padding:0 5px;box-sizing:border-box;}
+#sticky_header #search_row > *{margin-right:6px;}
+#sticky_header #search_row > *:last-child{margin-right:0;}
+.examples_below{font-size:13px;color:#0066cc;margin-top:7px;text-align:left;padding-left:41px;font-family:'맑은 고딕',sans-serif;}
+#dbcs_msg{text-align:left;padding-left:41px;margin-top:7px;font-family:'맑은 고딕',sans-serif;white-space:nowrap;}
+#dbcs_noresult{color:#d00;font-size:13px;font-weight:bold;display:none;vertical-align:middle;}
+#dbcs_count{color:#0066cc;font-size:13px;font-weight:bold;display:none;margin-right:8px;vertical-align:middle;}
 #dbcs_nav{display:none;vertical-align:middle;}
-#dbcs_nav button{padding:2px 8px;font-size:11px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;vertical-align:middle;}
+#dbcs_nav button{padding:2px 8px;font-size:13px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;vertical-align:middle;}
+#dbcs_pos{font-size:13px;display:inline-block;padding:0 6px;vertical-align:middle;}
 @media (max-width:600px){
 body{padding-top:94px;}
 img,span{scroll-margin-top:101px;}
@@ -46,11 +49,11 @@ img,span{scroll-margin-top:101px;}
 <a class="purchase_btn" href="https://smartstore.naver.com/markmall/products/137285838" target="_blank" rel="noopener">구매페이지 이동</a>
 </div>
 <div class="examples_below">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대</div>
-</div>
 <div id="dbcs_msg">
-<div id="dbcs_noresult">검색 결과가 없습니다. 검색어를 변경하여 다시 시도해주세요</div>
-<div id="dbcs_count"></div>
-<div id="dbcs_nav"><button type="button" onclick="dbcs_prev()">← 이전</button> <span id="dbcs_pos" style="font-size:11px;display:inline-block;padding:0 6px;"></span> <button type="button" onclick="dbcs_next()">다음 →</button></div>
+<span id="dbcs_noresult">검색 결과가 없습니다. 검색어를 변경하여 다시 시도해주세요</span>
+<span id="dbcs_count"></span>
+<span id="dbcs_nav"><button type="button" onclick="dbcs_prev()">← 이전</button><span id="dbcs_pos"></span><button type="button" onclick="dbcs_next()">다음 →</button></span>
+</div>
 </div>
 </div>
 <script>
@@ -65,6 +68,8 @@ document.addEventListener('contextmenu',function(e){if(e.target&&e.target.tagNam
 document.addEventListener('keydown',function(e){var k=e.keyCode||e.which;if(k===123){e.preventDefault();return false;}if(e.ctrlKey&&(k===85)){e.preventDefault();return false;}if(e.ctrlKey&&e.shiftKey&&(k===73||k===74||k===67||k===75)){e.preventDefault();return false;}if((e.metaKey||e.ctrlKey)&&e.altKey&&(k===73||k===74||k===67)){e.preventDefault();return false;}});
 document.addEventListener('selectstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='input')return;e.preventDefault();return false;});
 document.addEventListener('dragstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='img'){e.preventDefault();return false;}});
+function dbcs_alignBelow(){var inp=document.getElementById('dbcs_kw');var blk=document.getElementById('search_block');if(!inp||!blk)return;var off=inp.getBoundingClientRect().left-blk.getBoundingClientRect().left;var ex=document.querySelector('.examples_below');var msg=document.getElementById('dbcs_msg');if(ex)ex.style.paddingLeft=off+'px';if(msg)msg.style.paddingLeft=off+'px';}
+if(document.readyState!=='loading')dbcs_alignBelow();else document.addEventListener('DOMContentLoaded',dbcs_alignBelow);window.addEventListener('load',dbcs_alignBelow);window.addEventListener('resize',dbcs_alignBelow);
 </script>
 <table width='100%' border='0' cellpadding='0' cellspacing='0'>
 <tr> <td align='center' valign='top'> <img src='https://luxmetal-catalog.pages.dev/image/B1E1.jpg' /> </td> </tr>
