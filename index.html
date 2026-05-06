@@ -44,7 +44,7 @@ td{max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
 </div>
 <div class="examples_below">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대.파킹</div>
 <div id="dbcs_msg">
-<span id="dbcs_noresult"><span style="color:#DD0000">결과 없음 · 검색어를 변경하여 다시 시도해주세요.</span><br><span style="color:#0080C0">원하시는 디자인이 없어 무료제작을 희망하시는 경우</span><br><span style="color:#0080C0">구매시 배송요구사항에 상세히 남겨주세요.</span></span>
+<span id="dbcs_noresult"><span style="color:#DD0000">결과 없음 ·검색어를 변경하여 다시 시도해주세요.</span><br><span style="color:#0080C0">원하시는 디자인이 없어 무료제작을 희망하시는 경우</span><br><span style="color:#0080C0">구매시 배송요구사항에 상세히 남겨주세요.</span></span>
 <span id="dbcs_count"></span>
 <span id="dbcs_nav"><button type="button" onclick="dbcs_prev()">◀ 이전</button><span id="dbcs_pos"></span><button type="button" onclick="dbcs_next()">다음 ▶</button></span>
 </div>
@@ -62,7 +62,7 @@ document.addEventListener('contextmenu',function(e){if(e.target&&e.target.tagNam
 document.addEventListener('keydown',function(e){var k=e.keyCode||e.which;if(k===123){e.preventDefault();return false;}if(e.ctrlKey&&(k===85)){e.preventDefault();return false;}if(e.ctrlKey&&e.shiftKey&&(k===73||k===74||k===67||k===75)){e.preventDefault();return false;}if((e.metaKey||e.ctrlKey)&&e.altKey&&(k===73||k===74||k===67)){e.preventDefault();return false;}});
 document.addEventListener('selectstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='input')return;e.preventDefault();return false;});
 document.addEventListener('dragstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='img'){e.preventDefault();return false;}});
-function dbcs_updateBodyPad(){var hdr=document.getElementById('sticky_header');if(!hdr)return;document.body.style.paddingTop=(hdr.offsetHeight+8)+'px';}
+function dbcs_updateBodyPad(){var hdr=document.getElementById('sticky_header');if(!hdr)return;document.body.style.paddingTop=(hdr.offsetHeight+3)+'px';}
 function dbcs_alignBelow(){var inp=document.getElementById('dbcs_kw');var blk=document.getElementById('search_block');if(!inp||!blk)return;var off=inp.getBoundingClientRect().left-blk.getBoundingClientRect().left;var ex=document.querySelector('.examples_below');var msg=document.getElementById('dbcs_msg');if(ex){ex.style.paddingLeft=off+'px';ex.style.visibility='visible';}if(msg)msg.style.paddingLeft=off+'px';dbcs_updateBodyPad();}
 dbcs_alignBelow();window.addEventListener('load',dbcs_alignBelow);window.addEventListener('resize',dbcs_alignBelow);
 </script>
