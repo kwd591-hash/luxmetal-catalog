@@ -27,17 +27,12 @@ td{max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
 #sticky_header #search_row > *{margin-right:6px;}
 #sticky_header #search_row > *:last-child{margin-right:0;}
 .examples_below{font-size:16px;color:#0066cc;margin-top:8px;text-align:left;padding-left:38px;padding-right:2px;font-family:'맑은 고딕',sans-serif;visibility:hidden;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box;}
-#dbcs_msg{text-align:left;padding-left:38px;margin-top:7px;font-family:'맑은 고딕',sans-serif;white-space:nowrap;}
-#dbcs_noresult{color:#d00;font-size:16px;font-weight:bold;display:none;vertical-align:middle;}
+#dbcs_msg{text-align:left;padding-left:38px;padding-right:2px;margin-top:8px;font-family:'맑은 고딕',sans-serif;white-space:nowrap;box-sizing:border-box;}
+#dbcs_noresult{color:#d00;font-size:16px;font-weight:bold;display:none;vertical-align:middle;line-height:1.4;}
 #dbcs_count{color:#0066cc;font-size:16px;font-weight:bold;display:none;margin-right:8px;vertical-align:middle;}
 #dbcs_nav{display:none;vertical-align:middle;}
 #dbcs_nav button{padding:2px 4px;font-size:16px;cursor:pointer;background:#fff;border:1px solid #aac;border-radius:3px;vertical-align:middle;line-height:1;}
 #dbcs_pos{font-size:16px;display:inline-block;padding:0 6px;vertical-align:middle;}
-@media (max-width:600px){
-body{padding-top:94px;}
-img,span{scroll-margin-top:101px;}
-.sticky_search_box{width:90%;max-width:280px;}
-}
 </style>
 <div id="sticky_header">
 <div id="search_block">
@@ -47,9 +42,9 @@ img,span{scroll-margin-top:101px;}
 <button type="button" class="search_btn" onclick="dbcs_search()">검색</button>
 <a class="purchase_btn" href="https://smartstore.naver.com/markmall/products/137285838" target="_blank" rel="noopener">구매페이지 이동</a>
 </div>
-<div class="examples_below">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대.동호회,아파트</div>
+<div class="examples_below">입력 예) 쉐보레, 벤츠, S클래스, 서울대학교, 해병대.파킹</div>
 <div id="dbcs_msg">
-<span id="dbcs_noresult">결과 없음 · 검색어를 변경하여 다시 시도해주세요.</span>
+<span id="dbcs_noresult"><span style="color:#DD0000">결과 없음 · 검색어를 변경하여 다시 시도해주세요.</span><br><span style="color:#0080C0">원하시는 디자인이 없어 무료제작을 희망하시는 경우</span><br><span style="color:#0080C0">구매시 배송요구사항에 상세히 남겨주세요.</span></span>
 <span id="dbcs_count"></span>
 <span id="dbcs_nav"><button type="button" onclick="dbcs_prev()">◀ 이전</button><span id="dbcs_pos"></span><button type="button" onclick="dbcs_next()">다음 ▶</button></span>
 </div>
@@ -58,7 +53,7 @@ img,span{scroll-margin-top:101px;}
 <script>
 var dbcs_matches=[];var dbcs_idx=0;
 function dbcs_findTarget(s){var t=s.nextSibling;while(t&&(t.nodeType!==1||(t.tagName&&t.tagName.toLowerCase()==='span')))t=t.nextSibling;if(!t){var p=s.parentNode;while(p){var n=p.nextSibling;while(n&&(n.nodeType!==1||(n.tagName&&n.tagName.toLowerCase()==='span')))n=n.nextSibling;if(n){t=n;break;}p=p.parentNode;}}return t||s;}
-function dbcs_show(state){var nr=document.getElementById('dbcs_noresult');var c=document.getElementById('dbcs_count');var nv=document.getElementById('dbcs_nav');var ex=document.querySelector('.examples_below');if(nr)nr.style.display=(state==='noresult')?'inline-block':'none';if(c)c.style.display=(state==='has')?'inline-block':'none';if(nv)nv.style.display=(state==='has')?'inline-block':'none';if(ex)ex.style.display=(state==='noresult'||state==='has')?'none':'block';}
+function dbcs_show(state){var nr=document.getElementById('dbcs_noresult');var c=document.getElementById('dbcs_count');var nv=document.getElementById('dbcs_nav');var ex=document.querySelector('.examples_below');if(nr)nr.style.display=(state==='noresult')?'inline-block':'none';if(c)c.style.display=(state==='has')?'inline-block':'none';if(nv)nv.style.display=(state==='has')?'inline-block':'none';if(ex)ex.style.display=(state==='noresult'||state==='has')?'none':'block';dbcs_updateBodyPad();}
 function dbcs_updatePos(){var pos=document.getElementById('dbcs_pos');var c=document.getElementById('dbcs_count');if(pos)pos.innerHTML='<span style="color:#d00;font-weight:bold;">'+(dbcs_idx+1)+'</span> / '+dbcs_matches.length;if(c)c.innerHTML='총 '+dbcs_matches.length+'건이 검색되었습니다';}
 function dbcs_search(){var inp=document.getElementById('dbcs_kw');var kw=(inp.value||'').replace(/^\s+|\s+$/g,'');if(!kw){dbcs_show('hidden');return;}var lower=kw.toLowerCase().replace(/\s+/g,'');dbcs_matches=[];var hdr=document.getElementById('sticky_header');var spans=document.getElementsByTagName('span');for(var i=0;i<spans.length;i++){var s=spans[i];if(hdr&&hdr.contains(s))continue;var text=s.innerHTML||'';if(!text){var oh=s.outerHTML||'';text=oh.replace(/<[^>]+>/g,'');}if(text.toLowerCase().replace(/\s+/g,'').indexOf(lower)>=0)dbcs_matches.push(s);}if(dbcs_matches.length===0){dbcs_show('noresult');return;}dbcs_idx=0;dbcs_findTarget(dbcs_matches[0]).scrollIntoView(true);dbcs_updatePos();dbcs_show('has');}
 function dbcs_prev(){if(dbcs_matches.length===0)return;dbcs_idx=(dbcs_idx-1+dbcs_matches.length)%dbcs_matches.length;dbcs_findTarget(dbcs_matches[dbcs_idx]).scrollIntoView(true);dbcs_updatePos();}
@@ -67,7 +62,8 @@ document.addEventListener('contextmenu',function(e){if(e.target&&e.target.tagNam
 document.addEventListener('keydown',function(e){var k=e.keyCode||e.which;if(k===123){e.preventDefault();return false;}if(e.ctrlKey&&(k===85)){e.preventDefault();return false;}if(e.ctrlKey&&e.shiftKey&&(k===73||k===74||k===67||k===75)){e.preventDefault();return false;}if((e.metaKey||e.ctrlKey)&&e.altKey&&(k===73||k===74||k===67)){e.preventDefault();return false;}});
 document.addEventListener('selectstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='input')return;e.preventDefault();return false;});
 document.addEventListener('dragstart',function(e){if(e.target&&e.target.tagName&&e.target.tagName.toLowerCase()==='img'){e.preventDefault();return false;}});
-function dbcs_alignBelow(){var inp=document.getElementById('dbcs_kw');var blk=document.getElementById('search_block');if(!inp||!blk)return;var off=inp.getBoundingClientRect().left-blk.getBoundingClientRect().left;var ex=document.querySelector('.examples_below');var msg=document.getElementById('dbcs_msg');if(ex){ex.style.paddingLeft=off+'px';ex.style.visibility='visible';}if(msg)msg.style.paddingLeft=off+'px';}
+function dbcs_updateBodyPad(){var hdr=document.getElementById('sticky_header');if(!hdr)return;document.body.style.paddingTop=(hdr.offsetHeight+8)+'px';}
+function dbcs_alignBelow(){var inp=document.getElementById('dbcs_kw');var blk=document.getElementById('search_block');if(!inp||!blk)return;var off=inp.getBoundingClientRect().left-blk.getBoundingClientRect().left;var ex=document.querySelector('.examples_below');var msg=document.getElementById('dbcs_msg');if(ex){ex.style.paddingLeft=off+'px';ex.style.visibility='visible';}if(msg)msg.style.paddingLeft=off+'px';dbcs_updateBodyPad();}
 dbcs_alignBelow();window.addEventListener('load',dbcs_alignBelow);window.addEventListener('resize',dbcs_alignBelow);
 </script>
 <table width='100%' border='0' cellpadding='0' cellspacing='0'>
